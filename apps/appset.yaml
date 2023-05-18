@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: guestbook
+spec:
+  generators:
+  - matrix:
+      generators:
+      - clusters:
+          selector:
+            matchLabels:
+              guestbook: 'enabled'
+      - git:
+          repoURL: https://github.com/dhpup/rollouts-multi.git
+          revision: HEAD
+          directories:
+          - path: clusters/guestbook/*
+  template:
+    metadata:
+      name: '{{path.basename}}-{{name}}'
+      annotations:
+        notifications.argoproj.io/subscribe.slack: test-dan
+    spec:
+      destination:
+        namespace: '{{path.basename}}'
+        server: '{{server}}'
+      source:
+        repoURL: https://github.com/dhpup/rollouts-multi.git
+        targetRevision: HEAD
+        path: '{{path}}'
+      project: guestbook
+      syncPolicy:
+        automated:
+          prune: true
+        syncOptions:
+          - CreateNamespace=true

@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: guestbook
+spec:
+  sourceRepos:
+    - https://github.com/dhpup/rollouts-multi.git
+  destinations:
+    - namespace: argo-rollouts
+      server: '*'
+    - namespace: guestbook-dev
+      server: '*'
+    - namespace: guestbook-stg
+      server: '*'
+    - namespace: guestbook-prd
+      server: '*'
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
