@@ -10,9 +10,9 @@ spec:
       server: '*'
     - namespace: guestbook-dev
       server: '*'
-    - namespace: guestbook-stg
+    - namespace: guestbook-prd-east
       server: '*'
-    - namespace: guestbook-prd
+    - namespace: guestbook-prd-west
       server: '*'
   clusterResourceWhitelist:
     - group: '*'
