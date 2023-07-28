@@ -20,6 +20,8 @@ spec:
       name: '{{path.basename}}-{{name}}'
       annotations:
         notifications.argoproj.io/subscribe.slack: test-dan
+        notifications.argoproj.io/on-sync-running.rollouts-multi: ""
+        notifications.argoproj.io/on-sync-succeeded.rollouts-multi: ""
     spec:
       destination:
         namespace: '{{path.basename}}'
