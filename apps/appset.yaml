@@ -25,7 +25,7 @@ spec:
     spec:
       destination:
         namespace: '{{path.basename}}'
-        server: '{{server}}'
+        name: '{{name}}'
       source:
         repoURL: https://github.com/dhpup/rollouts-multi.git
         targetRevision: HEAD
